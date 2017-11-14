@@ -1,5 +1,5 @@
 ---
-title: "NOAA: Patterns of Climate, 1981-2010"
+title: "NOAA: Patterns of Climate in New York State, 1981-2010"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -73,7 +73,7 @@ noaa %>%
       yaxis = list(title = "Precipitation (mm)"))
 ```
 
-### Number of Days above 35 degrees C (95 degrees F) acros NYS
+### Number of Days above 35 degrees C (95 degrees F) across New York State
 
 ```{r chart_c}
 noaa_year_stats <- noaa %>% 
@@ -95,9 +95,6 @@ noaa %>%
                             "\nAve Min Temp: ", ave_min_year, 
                             '\nRange of Max Temps: ', range)) %>%
   plot_ly(x = ~year, y = ~n, type = "bar", text = ~text_label) %>% 
-  add_lines(y = ~fitted(loess(n ~ year)),
-            line = list(color = '#07A4B5'),
-            name = "Loess Smoother", showlegend = FALSE) %>% 
   layout(xaxis = list(title = "Year",
         showticklabels = TRUE,
         tickangle = 45),
