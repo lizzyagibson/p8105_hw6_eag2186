@@ -6,8 +6,10 @@ title: "Lizzy Gibson & Ahlam Abuawad </br> </br> Data Science I"
 
 We used National Oceanic and Atmospheric Association (NOAA) data from New York State between 1981 and 2010 (accessed on August 15, 2017). This data includes date of observation, precipitation, snowfall, and maximum and minimum temperatureat weather stations across the state. Variables were processed to represent full millimeters and degrees Celsius.
 
+The goal of this exploratory data analysis was to investigate patterns of climate change in New York State over three decades, focusing on maximum tempterature, the number of days above 95 degrees F each year, and total rainfall.
+
 1. The original **flexdashboard** using plotly for interactive graphic is [here](p8105_hw6_eag2186_problem_1.html).
 
 2. The **shiny-enabled** dashboard based on our work in Problem 1 [here]().
 
-3. The **GitHub repo** that underly the dashboards and the webpage is [here](https://github.com/lizzyagibson/).
+3. The **GitHub repo** that underlies the dashboards and the webpage (hosted through shinyapp.io) is [here](https://github.com/lizzyagibson/p8105_hw6_eag2186).

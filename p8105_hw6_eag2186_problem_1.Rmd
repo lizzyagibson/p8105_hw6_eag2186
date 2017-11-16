@@ -71,6 +71,7 @@ noaa %>%
           colors = "Set2") %>% 
   layout(xaxis = list(title = "Year Interval"),
       yaxis = list(title = "Precipitation (mm)"))
+
 ```
 
 ### Number of Days above 35 degrees C (95 degrees F) across New York State
