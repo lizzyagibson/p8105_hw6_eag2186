@@ -2,11 +2,11 @@
 title: "NOAA: Patterns of Climate in New York State, 1981-2010"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    orientation: row
+  runtime: shiny
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
 library(janitor)
@@ -14,8 +14,7 @@ library(stringr)
 library(forcats)
 library(plotly)
 library(dplyr)
-
-knitr::opts_chunk$set(echo = FALSE)
+library(shiny)
 ```
 
 ```{r read}
@@ -29,14 +28,37 @@ noaa <-  noaa %>%
   mutate(tmin = tmin / 10,
     tmax = tmax / 10,
     prcp = prcp / 10)
+min_temp = noaa %>% distinct(ave_max) %>% min()
+max_temp = noaa %>% distinct(ave_max) %>% max()
 ```
 
-Column {data-width=600}
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+# sliderInput widget
+sliderInput("temperature_range", label = h3("Choose Temperature Range"), min = min_temp, 
+        max = max_temp, value = c(12.91, 15.38))
+ 
+year_choice = noaa %>% distinct(year) %>% pull()
+
+# radioButtons widget
+radioButtons("year_choice", label = h3("Choose Year Range"),
+    choices = year_choice, 
+    selected = "five_years")
+
+# selectInput widget
+selectInput("year_choice", label = h3("Select Year"),
+            choices = year, selected = "1981")
+```
+
+
+Row
 -----------------------------------------------------------------------
 
 ### Average Maximum Temperature in New York State
 
-```{r chart_a}
+```{r}
 noaa %>%
   group_by(year) %>% 
   summarise(ave_max = round(mean(tmax, na.rm = TRUE), 2),
@@ -53,17 +75,14 @@ noaa %>%
                       tickangle = 45),
                       margin = list(b = 48),
       yaxis = list(title = "Temperature (degrees Celsius)"))
-
-min_temp = noaa %>% distinct(ave_max) %>% min()
-max_temp = noaa %>% distinct(ave_max) %>% max()
 ```
 
-Column {data-width=400}
+Row {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 
 ### Precipitation in New York State by Five Year Intervals
 
-```{r chart_b}
+```{r}
 noaa %>% 
   filter(!is.na(prcp)) %>% 
   group_by(year) %>% 
@@ -78,7 +97,7 @@ noaa %>%
 
 ### Number of Days above 35 degrees C (95 degrees F) across New York State
 
-```{r chart_c}
+```{r}
 noaa_year_stats <- noaa %>% 
   group_by(year) %>% 
   summarise(tmax_year = max(tmax, na.rm = TRUE),
