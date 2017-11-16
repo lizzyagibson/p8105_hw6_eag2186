@@ -53,9 +53,6 @@ noaa %>%
                       tickangle = 45),
                       margin = list(b = 48),
       yaxis = list(title = "Temperature (degrees Celsius)"))
-
-min_temp = noaa %>% distinct(ave_max) %>% min()
-max_temp = noaa %>% distinct(ave_max) %>% max()
 ```
 
 Column {data-width=400}
@@ -74,6 +71,7 @@ noaa %>%
           colors = "Set2") %>% 
   layout(xaxis = list(title = "Year Interval"),
       yaxis = list(title = "Precipitation (mm)"))
+
 ```
 
 ### Number of Days above 35 degrees C (95 degrees F) across New York State
@@ -103,7 +101,5 @@ noaa %>%
         tickangle = 45),
         margin = list(b = 48),
       yaxis = list(title = "Number of Days above 35 degrees C"))
-
-year = noaa %>% distinct(year) %>% pull()
 ```
 
