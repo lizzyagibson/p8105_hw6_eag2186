@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+  runtime: shiny
 ---
 
 ```{r setup, include = FALSE}
@@ -14,6 +15,7 @@ library(stringr)
 library(forcats)
 library(plotly)
 library(dplyr)
+library(shiny)
 
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -53,6 +55,15 @@ noaa %>%
                       tickangle = 45),
                       margin = list(b = 48),
       yaxis = list(title = "Temperature (degrees Celsius)"))
+
+min_temp = noaa %>% distinct(ave_max) %>% min()
+max_temp = noaa %>% distinct(ave_max) %>% max()
+
+# sliderInput widget
+sliderInput("temperature_range", label = h3("Choose Temperature Range"), min = min_temp, 
+        max = max_temp, value = c(12.91, 15.38))
+ 
+year_choice = noaa %>% distinct(year) %>% pull()
 ```
 
 Column {data-width=400}
@@ -72,6 +83,10 @@ noaa %>%
   layout(xaxis = list(title = "Year Interval"),
       yaxis = list(title = "Precipitation (mm)"))
 
+# radioButtons widget
+radioButtons("year_choice", label = h3("Choose Year Range"),
+    choices = year_choice, 
+    selected = "five_years")
 ```
 
 ### Number of Days above 35 degrees C (95 degrees F) across New York State
@@ -101,5 +116,11 @@ noaa %>%
         tickangle = 45),
         margin = list(b = 48),
       yaxis = list(title = "Number of Days above 35 degrees C"))
+
+year = noaa %>% distinct(year) %>% pull()
+
+# selectInput widget
+selectInput("year_choice", label = h3("Select Year"),
+            choices = year, selected = "1981")
 ```
 
