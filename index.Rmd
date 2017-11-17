@@ -1,5 +1,5 @@
 ---
-title: "Lizzy Gibson & Ahlam Abuawad </br> </br> Data Science I"
+title: "Lizzy Gibson </br> </br> Data Science I"
 ---
 
 ## Homework 6
@@ -10,6 +10,15 @@ The goal of this exploratory data analysis was to investigate patterns of climat
 
 1. The original **flexdashboard** using plotly for interactive graphic is [here](p8105_hw6_eag2186_problem_1.html).
 
-2. The **shiny-enabled** dashboard based on our work in Problem 1 [here]().
+2. The **shiny-enabled** dashboard based on our work in Problem 1 [here](https://aabuawad.shinyapps.io/lizzy_shiny/).
 
-3. The **GitHub repo** that underlies the dashboards and the webpage (hosted through shinyapp.io) is [here](https://github.com/lizzyagibson/p8105_hw6_eag2186).
+3. The **GitHub repo** that underlies the dashboard and the webpage is [here](https://github.com/lizzyagibson/p8105_hw6_eag2186).
+
+### Collaboration
+
+* Ahlam Abuawad (aka2170) collaborated with me by making my [shiny dashboard](https://aabuawad.shinyapps.io/lizzy_shiny/). 
+    * The repo for that is [here](https://github.com/aabuawad/lizzy_shiny).
+
+* I collaborated with Yanelli Nunez (yn2295) by making her [shiny dashboard](https://lizzyagibson.shinyapps.io/p8105_hw_yn2295_shiny/). 
+    * The repo for that is [here](https://github.com/lizzyagibson/p8105_hw_yn2295_shiny).
+        * The repo includes a file for subsetting the original NOAA dataset. We took a random sample of 150 station ID's.
